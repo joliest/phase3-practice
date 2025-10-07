@@ -10,4 +10,19 @@ export default {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
+  physics: {
+    // specify engine we will use
+    default: 'arcade',
+    arcade: {
+      // configure world <static> ArcadeWorldConfighttps://docs.phaser.io/api-documentation/typedef/types-physics-arcade
+      gravity: {
+        y: 750
+      },
+      // for debugging
+      debug: true,
+      debugShowVelocity: true,
+      debugShowBody: true,
+      debugShowStaticBody: true,
+    }
+  },
 };

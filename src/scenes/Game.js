@@ -25,7 +25,7 @@ class Game extends Phaser.Scene {
     });
 
     // adding physics will make the character fall
-    this.player = this.physics.add.sprite(400, 300, 'hero-run-sheet');
+    this.player = this.physics.add.sprite(250, 160, 'hero-run-sheet');
     this.player.anims.play('hero-running'); // assign key
 
     // should collide with boundary of world

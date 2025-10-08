@@ -10,6 +10,9 @@ export default {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
+  render: {
+    pixelArt: true, // tells the browser to use different ren
+  },
   physics: {
     // specify engine we will use
     default: 'arcade',

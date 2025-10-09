@@ -26,8 +26,31 @@ class Hero extends Phaser.GameObjects.Sprite {
     this.body.setCollideWorldBounds(true)
     this.body.setSize(12,40);
     this.body.setOffset(12,23);
+
+    this.keys = scene.cursorKeys;
   }
 
+  preUpdate(time, delta) {
+    super.preUpdate(time, delta);
+    if (this.keys.left.isDown) {
+      // move character to the left
+      this.body.setVelocityX(-250);
+
+      // horizontally flip rendering of sprite
+      this.setFlipX(true);
+
+      // position the collision box properly
+      this.body.offset.x = 8;
+    } else if (this.keys.right.isDown) {
+      // move character to the right
+      this.body.setVelocityX(250);
+      // reset
+      this.setFlipX(false);
+      this.body.offset.x = 12;
+    } else {
+      this.body.setVelocityX(0);
+    }
+  }
 }
 
 export default Hero;

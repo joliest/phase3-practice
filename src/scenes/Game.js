@@ -30,6 +30,8 @@ class Game extends Phaser.Scene {
 
     // should collide with boundary of world
     this.player.body.setCollideWorldBounds(true)
+    this.player.body.setSize(12,40);
+    this.player.body.setOffset(12,23);
   }
 
   update(time, delta) {}

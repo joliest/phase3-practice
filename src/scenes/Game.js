@@ -19,16 +19,6 @@ class Game extends Phaser.Scene {
     // convenient way to use up, left, right down and space
     this.cursorKeys = this.input.keyboard.createCursorKeys();
 
-    this.input.keyboard.on('keydown-SPACE', () => {
-      console.log('Pressed space')
-    })
-
-    this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-    // subscribe to an event, like when space key is 'released' (up)
-    this.space.on('up', () => {
-      console.log('Released space')
-    })
-
     // sprite can support animation
     this.anims.create({
       key: 'hero-running',
@@ -41,11 +31,7 @@ class Game extends Phaser.Scene {
     this.hero = new Hero(this, 250, 160);
   }
 
-  update(time, delta) {
-    if (this.cursorKeys.left.isDown) {
-      console.log('holding a space')
-    }
-  }
+  update(time, delta) {}
 }
 
 export default Game;

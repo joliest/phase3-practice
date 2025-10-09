@@ -1,23 +1,23 @@
 import Phaser from 'phaser';
 
 class Hero extends Phaser.GameObjects.Sprite {
-  constructor(screen, x, y) {
+  constructor(scene, x, y) {
 
     // because we're creating the hero directly the factory methods before we're adding our game objects
     // to this scene and they were also adding them to the physics world.
     // But that's just not happening anymore so we need to do that manually.
     // key: 'hero-run-sheet'
     // default frame: 0
-    super(screen, x, y, 'hero-run-sheet', 0)
+    super(scene, x, y, 'hero-run-sheet', 0)
 
     // ensures that our game object actually gets added to the
     // game world and to the physics world.  
-    screen.add.existing(this);
+    scene.add.existing(this);
 
     // This is how it looks in Game.js:
     // this.player = this.physics.add.sprite(250, 160, 'hero-run-sheet');
     // adds physics (e.g. gravity) to our object
-    screen.physics.add.existing(this);
+    scene.physics.add.existing(this);
 
     this.anims.play('hero-running');
 

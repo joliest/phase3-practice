@@ -26,6 +26,10 @@ class Hero extends Phaser.GameObjects.Sprite {
     this.body.setCollideWorldBounds(true)
     this.body.setSize(12,40);
     this.body.setOffset(12,23);
+    // x, y
+    this.body.setMaxVelocity(250, 400);
+    // slow character down when not accelerating
+    this.body.setDragX(750);
 
     this.keys = scene.cursorKeys;
   }
@@ -34,7 +38,7 @@ class Hero extends Phaser.GameObjects.Sprite {
     super.preUpdate(time, delta);
     if (this.keys.left.isDown) {
       // move character to the left
-      this.body.setVelocityX(-250);
+      this.body.setAccelerationX(-1000);
 
       // horizontally flip rendering of sprite
       this.setFlipX(true);
@@ -43,12 +47,12 @@ class Hero extends Phaser.GameObjects.Sprite {
       this.body.offset.x = 8;
     } else if (this.keys.right.isDown) {
       // move character to the right
-      this.body.setVelocityX(250);
+      this.body.setAccelerationX(1000);
       // reset
       this.setFlipX(false);
       this.body.offset.x = 12;
     } else {
-      this.body.setVelocityX(0);
+      this.body.setAccelerationX(0);
     }
   }
 }

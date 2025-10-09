@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import Hero from '../entities/Hero';
 
 class Game extends Phaser.Scene {
   constructor() {
@@ -23,15 +24,8 @@ class Game extends Phaser.Scene {
       frameRate: 10, // speed
       repeat: -1 // loop
     });
-
-    // adding physics will make the character fall
-    this.player = this.physics.add.sprite(250, 160, 'hero-run-sheet');
-    this.player.anims.play('hero-running'); // assign key
-
-    // should collide with boundary of world
-    this.player.body.setCollideWorldBounds(true)
-    this.player.body.setSize(12,40);
-    this.player.body.setOffset(12,23);
+    
+    this.hero = new Hero(this, 250, 160);
   }
 
   update(time, delta) {}

@@ -55,6 +55,14 @@ class Hero extends Phaser.GameObjects.Sprite {
       this.body.setAccelerationX(0);
     }
 
+    if (this.body.onFloor()) {
+      this.canDoubleJump = false;
+    }
+
+    if (this.body.velocity.y > 0) {
+      this.isJumping = false;
+    }
+
     // tell us whether the key has just been pressed down or not.
     // note about this method is that it will only return true the first time that you call
     // if you want to use the the result of the test multiple times within a single frame you really need
@@ -66,9 +74,11 @@ class Hero extends Phaser.GameObjects.Sprite {
     if (didPressJump) {
       // normal jump
       if (this.body.onFloor()) {
+        this.isJumping = true;
         this.canDoubleJump = true;
         this.body.setVelocityY(-400);
       } else if (this.canDoubleJump) {
+        this.isJumping = true;
         this.body.setVelocityY(-300);
 
         // reset to prevent continually bounce through the air
@@ -78,7 +88,7 @@ class Hero extends Phaser.GameObjects.Sprite {
 
     // if you hold the up button, it will jump full -400
     // if you just tap the up button, it will limit the jump to 150
-    if (!this.keys.up.isDown && this.body.velocity.y < -150) {
+    if (!this.keys.up.isDown && this.body.velocity.y < -150 && this.isJumping) {
       this.body.setVelocityY(-150);
     }
   }

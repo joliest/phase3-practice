@@ -63,9 +63,17 @@ class Hero extends Phaser.GameObjects.Sprite {
 
     // jump logic, it will automatically pulled down
     // onFloor() - make sure that it will jump if body is on the floor
-    if (didPressJump && this.body.onFloor()) {
-    // if (this.keys.up.isDown && this.body.onFloor()) {
-      this.body.setVelocityY(-400);
+    if (didPressJump) {
+      // normal jump
+      if (this.body.onFloor()) {
+        this.canDoubleJump = true;
+        this.body.setVelocityY(-400);
+      } else if (this.canDoubleJump) {
+        this.body.setVelocityY(-300);
+
+        // reset to prevent continually bounce through the air
+        this.canDoubleJump = false;
+      }
     }
 
     // if you hold the up button, it will jump full -400

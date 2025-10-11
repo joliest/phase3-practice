@@ -54,6 +54,25 @@ class Hero extends Phaser.GameObjects.Sprite {
     } else {
       this.body.setAccelerationX(0);
     }
+
+    // tell us whether the key has just been pressed down or not.
+    // note about this method is that it will only return true the first time that you call
+    // if you want to use the the result of the test multiple times within a single frame you really need
+    // to assign it to a variable like we're doing here.
+    const didPressJump = Phaser.Input.Keyboard.JustDown(this.keys.up);
+
+    // jump logic, it will automatically pulled down
+    // onFloor() - make sure that it will jump if body is on the floor
+    if (didPressJump && this.body.onFloor()) {
+    // if (this.keys.up.isDown && this.body.onFloor()) {
+      this.body.setVelocityY(-400);
+    }
+
+    // if you hold the up button, it will jump full -400
+    // if you just tap the up button, it will limit the jump to 150
+    if (!this.keys.up.isDown && this.body.velocity.y < -150) {
+      this.body.setVelocityY(-150);
+    }
   }
 }
 

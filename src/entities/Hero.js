@@ -56,6 +56,15 @@ class Hero extends Phaser.GameObjects.Sprite {
         },
       },
     });
+
+    this.movePredicates = {
+      // each of these will return boolean 
+      // whether we should make the matching transition
+      jump: () => {},
+      flip: () => {},
+      fall: () => {},
+      touchdown: () => {},
+    }
   }
 
   preUpdate(time, delta) {
@@ -114,6 +123,14 @@ class Hero extends Phaser.GameObjects.Sprite {
     // if you just tap the up button, it will limit the jump to 150
     if (!this.keys.up.isDown && this.body.velocity.y < -150 && this.isJumping) {
       this.body.setVelocityY(-150);
+    }
+
+    // code that calls transitions, check what transitions are valid
+    for (const t of this.moveState.transistions()) {
+      if (t in this.movePredicates && this.movePredicates[t]()) {
+        this.moveState[t]();
+        break;
+      }
     }
   }
 }

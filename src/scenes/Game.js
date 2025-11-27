@@ -29,6 +29,14 @@ class Game extends Phaser.Scene {
     });
     
     this.hero = new Hero(this, 250, 160);
+
+    // adding new platform
+    const platform = this.add.rectangle(220, 240, 260, 10, 0x4BcB7C);
+    // add it to physics world
+    // true means static, cannot be moved by object
+    this.physics.add.existing(platform, true);
+    // make our hero interact with the platform
+    this.physics.add.collider(this.hero, platform)
   }
 
   update(time, delta) {}

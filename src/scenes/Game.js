@@ -7,7 +7,6 @@ class Game extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('logo', 'assets/phaser3-logo.png');
     this.load.spritesheet('hero-run-sheet', 'assets/hero/run.png', {
       frameWidth: 32,
       frameHeight: 64,
